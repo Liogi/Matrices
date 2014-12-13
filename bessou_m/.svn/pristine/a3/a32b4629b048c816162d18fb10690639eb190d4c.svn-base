@@ -1,0 +1,9 @@
+<?php
+
+namespace Project\MatricesBundle;
+
+use Symfony\Component\HttpKernel\Bundle\Bundle;
+
+class ProjectMatricesBundle extends Bundle
+{
+}
