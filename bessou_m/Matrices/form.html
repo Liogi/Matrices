@@ -8,10 +8,13 @@
 
     <form method="post" action="traitement.php">
       <p>
-       <input type="checkbox" name="somme" id="check_somme" onclick="is_checked()" /> <label for="somme">Somme de Matrices</label><br />
-       <input type="checkbox" name="produit" id="check_produit" onclick="is_checked()"/> <label for="produit">Produit de Matrices</label><br />
-       <input type="checkbox" name="transposee" id="check_transposee" onclick="is_checked()"/> <label for="transposee">Transposée de Matrices</label><br />
+       <input type="checkbox" name="somme" id="check_somme" /> <label for="somme">Somme de Matrices</label><br />
+       <input type="checkbox" name="produit" id="check_produit" /> <label for="produit">Produit de Matrices</label><br />
+       <input type="checkbox" name="transposee" id="check_transposee" /> <label for="transposee">Transposee de Matrices</label><br />
+       <button id="send_operand" type="button" disabled="true"><label for="send">Valider</label></button>
       </p>
     </form>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="functions.js"></script>
   </body>
 </html>
