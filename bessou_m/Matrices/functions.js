@@ -6,11 +6,11 @@ $(':checkbox').click(function() {
 	$('#operand').load(str[1]+'.html', function() {
 		alert("Vous avez choisi l'opération "+str[1]);
 		// action après click sur valider
-		action_performed();
+			error_performed(str[1]);
 	});
 });
 
-function action_performed()
+function error_performed(str)
 {
 	$('#buttonSum').click(function() {
 		var bool = true;
@@ -35,7 +35,21 @@ function action_performed()
 				}
 			});
 		}
+		if (bool == true){
+			error_operand(str);
+			$(':text').val('');
+			bool = false;
+			return bool;
+		}
 	});
+}
+
+function error_operand(str)
+{
+	if (str == 'somme'){
+		if (($('#ligneA').val() != $('#ligneB').val()) || ($('#colA').val() != $('#colB').val()))
+			alert('Somme A + B non calculable. Les matrices A et B doivent être de même taille');
+	}
 }
 
 function is_int(val)
