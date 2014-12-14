@@ -12,27 +12,29 @@ $(':checkbox').click(function() {
 
 function action_performed()
 {
-	var bool = true;
 	$('#buttonSum').click(function() {
-		$(':text').each(function () {
-			if ($(this).val() == false){
-				alert('Tous les champs doivent être renseignés');
-				bool = false;
-				return bool;
-			}
-		});
-		if (bool == false)
-			return false;
-		$(':text').each(function() {
-			var nb = $(this).val();
-			if (is_int(nb) == false){
-				alert('Les champs doivent être des nombres entiers');
-				bool = false;
-				return bool;
-			}
-		});
-		if (bool == false)
-			return false;
+		var bool = true;
+		if (bool == true){
+			$(':text').each(function () {
+				if ($(this).val() == false){
+					alert('Tous les champs doivent être renseignés');
+					$(':text').val('');
+					bool = false;
+					return bool;
+				}
+			});
+		}
+		if (bool == true){
+			$(':text').each(function() {
+				var nb = $(this).val();
+				if (is_int(nb) == false){
+					alert('Les champs doivent être des nombres entiers');
+					$(':text').val('');
+					bool = false;
+					return bool;
+				}
+			});
+		}
 	});
 }
 
