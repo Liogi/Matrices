@@ -19,6 +19,7 @@ function error_performed(str)
 				if ($(this).val() == false){
 					alert('Tous les champs doivent être renseignés');
 					$(':text').val('');
+					$('#formAddition').empty();
 					bool = false;
 					return bool;
 				}
@@ -30,6 +31,7 @@ function error_performed(str)
 				if (is_int(nb) == false){
 					alert('Les champs doivent être des nombres entiers');
 					$(':text').val('');
+					$('#formAddition').empty();
 					bool = false;
 					return bool;
 				}
@@ -37,7 +39,6 @@ function error_performed(str)
 		}
 		if (bool == true){
 			error_operand(str);
-			$(':text').val('');
 			bool = false;
 			return bool;
 		}
@@ -47,8 +48,25 @@ function error_performed(str)
 function error_operand(str)
 {
 	if (str == 'somme'){
-		if (($('#ligneA').val() != $('#ligneB').val()) || ($('#colA').val() != $('#colB').val()))
+		if (($('#ligneA').val() != $('#ligneB').val()) || ($('#colA').val() != $('#colB').val())){
+			$(':text').val('');
+			$('#formAddition').empty();
 			alert('Somme A + B non calculable. Les matrices A et B doivent être de même taille');
+		}
+		else{
+			$(function(){
+				var ligneA = $('#ligneA').val();
+				var colA = $('#colA').val();
+				var ligneB = $('#ligneB').val();
+				var colB = $('#colB').val();
+				$('#formAddition').load('formAddition.php', {
+					LigneA: ligneA, 
+					ColA: colA, 
+					LigneB: ligneB, 
+					ColB: colB	
+				});
+			});
+		}
 	}
 }
 

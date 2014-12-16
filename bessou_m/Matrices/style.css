@@ -7,3 +7,12 @@
 #alignBcol{
 	margin-left: 1px;
 }
+#formulaireMatriceA, #formulaireMatriceB{
+	display: inline-block;
+}
+#formulaireMatriceB{
+	margin-left: 30px;
+}
+.titreh3{
+	text-align: center;
+}
