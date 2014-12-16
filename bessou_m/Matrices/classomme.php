@@ -15,12 +15,12 @@ class Somme extends Matrice{
 	}
 
 	function afficheSomme(){
-		echo "<table id='matriceSomme'>";
+		echo "<table class='matriceresult'>";
 		echo "<h3 class='titreh3'>MatriceSomme</h3>";
 		foreach ($this->matriceSomme as $ligne) {
 			echo "<tr>";
 			foreach ($ligne as $key => $value) {
-				echo "<td class='caseSomme'>{$value}</td>";
+				echo "<td class='caseresult'>{$value}</td>";
 			}
 			echo "</tr>";
 		}

@@ -24,11 +24,12 @@ class Produit extends Matrice{
 	}
 
 	function afficheProduit(){
-		echo "<table id='matriceProduit'>";
+		echo "<table class='matriceresult'>";
+		echo "<h3 class='titreh3'>MatriceProduit</h3>";
 		foreach ($this->matriceProduit as $ligne) {
 			echo "<tr>";
 			foreach ($ligne as $key => $value) {
-				echo "<td>{$value}</td>";
+				echo "<td class='caseresult'>{$value}</td>";
 			}
 			echo "</tr>";
 		}
