@@ -6,7 +6,7 @@ $(':checkbox').click(function() {
 	$('#operand').load(str[1]+'.html', function() {
 		alert("Vous avez choisi l'opération "+str[1]);
 		// action après click sur valider
-			error_performed(str[1]);
+		error_performed(str[1]);
 	});
 });
 
@@ -64,7 +64,14 @@ function error_operand(str)
 					ColA: colA, 
 					LigneB: ligneB, 
 					ColB: colB	
+				}, function() {
+					$("#envoimatrice").click(function() {
+						$('#formAddition :text').each(function() {
+							alert($(this).val());
+						});
+					});
 				});
+
 			});
 		}
 	}

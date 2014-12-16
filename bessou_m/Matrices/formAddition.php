@@ -11,7 +11,7 @@ for ($i = 0; $i < $ligneA; ++$i){
 	echo "<tr>";
 	for ($j = 0; $j < $colA; ++$j){
 		$id = "A$i,$j";
-		echo "<td><input id='$id' name='cadeau' type='text' size='3' /></td>";
+		echo "<td><input id='$id' type='text' size='3' /></td>";
 	}
 	echo "</tr>";
 }
@@ -28,3 +28,4 @@ for ($i = 0; $i < $ligneB; ++$i){
 	echo "</tr>";
 }
 echo "</table></div>";
+echo "<button type='button' id='envoimatrice'><label for='envoimatrice'>envoi</label></button></br>";

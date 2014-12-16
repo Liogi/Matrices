@@ -40,13 +40,37 @@ abstract class Matrice{
 		echo "</br>";
 	}
 
-	abstract protected function getLigneB($nb);
+	function getLigneB($nb){
+		$ligne = array();
+		foreach ($this->matriceB[$nb] as $key => $value){
+			$ligne[] = $value;
+		}
+		return $ligne;
+	}
 
-	abstract protected function getColB($nb);
+	function getColB($nb){
+		$col = array();
+		foreach ($this->matriceB as $tab) {
+			foreach ($tab as $key => $value) {
+				if ($key == $nb)
+					$col[] = $value;
+			}
+		}
+		return $col;
+	}
 
-	abstract protected function getElemB($i, $j);
-		
-	abstract protected function afficheMatriceB();
-
+	function afficheMatriceB(){
+		echo "<table id='matriceB'>";
+		foreach ($this->matriceB as $ligne) {
+			echo "<tr>";
+			foreach ($ligne as $key => $value) {
+				echo "<td>{$value}</td>";
+			}
+			echo "</tr>";
+		}
+		echo "</table>";
+		echo "</br>";
+	}
+	
 	abstract protected function operation();
 }
