@@ -12,14 +12,18 @@ $(':checkbox').click(function() {
 
 function error_performed(str)
 {
-	$('#buttonSum').click(function() {
+	
+	var form = "#form" + str;
+	var button = "#button" + str;
+	alert(str);
+	$('#buttonProd').click(function() {
 		var bool = true;
 		if (bool == true){
 			$(':text').each(function () {
 				if ($(this).val() == false){
 					alert('Tous les champs doivent être renseignés');
 					$(':text').val('');
-					$('#formAddition').empty();
+					$(form).empty();
 					bool = false;
 					return bool;
 				}
@@ -31,13 +35,14 @@ function error_performed(str)
 				if (is_int(nb) == false){
 					alert('Les champs doivent être des nombres entiers');
 					$(':text').val('');
-					$('#formAddition').empty();
+					$(form).empty();
 					bool = false;
 					return bool;
 				}
 			});
 		}
 		if (bool == true){
+			alert(str);
 			error_operand(str);
 			bool = false;
 			return bool;
@@ -45,13 +50,14 @@ function error_performed(str)
 	});
 }
 
-function error_operand(str)
+function produit(str)
 {
-	if (str == 'somme'){
-		if (($('#ligneA').val() != $('#ligneB').val()) || ($('#colA').val() != $('#colB').val())){
+	
+	var form = "#form" + str;
+		if (($('#colA').val() != $('#ligneB').val())) {
 			$(':text').val('');
-			$('#formAddition').empty();
-			alert('Somme A + B non calculable. Les matrices A et B doivent être de même taille');
+			$(form).empty();
+			alert('Produit A * B non calculable. Le nombre de colonnes de la matrice A doit être identique au nombre de lignes de la Matrice B.');
 		}
 		else{
 			$(function(){
@@ -59,7 +65,7 @@ function error_operand(str)
 				var colA = $('#colA').val();
 				var ligneB = $('#ligneB').val();
 				var colB = $('#colB').val();
-				$('#formAddition').load('formAddition.php', {
+				$(form).load('formAddition.php', {
 					LigneA: ligneA, 
 					ColA: colA, 
 					LigneB: ligneB, 
@@ -68,7 +74,7 @@ function error_operand(str)
 					$("#envoimatrice").click(function() {
 						var bool = true;
 						if (bool == true){
-							$('#formAddition :text').each(function () {
+							$('#'+form+' :text').each(function () {
 								if ($(this).val() == false){
 									alert('Tous les champs doivent être renseignés');
 									$("#formAddition :text").val('');
@@ -82,7 +88,83 @@ function error_operand(str)
 								var nb = $(this).val();
 								if (is_int(nb) == false){
 									alert('Les champs doivent être des nombres entiers');
-									$('#formAddition :text').val('');
+									$('#'+form+' :text').val('');
+									bool = false;
+									return bool;
+								}
+							});
+						}
+						if (bool == true){
+							var matriceA = new Array();
+							var matriceB = new Array();
+							var i = 0;
+							var j = 0;
+							for (var i = 0; i < ligneA; ++i){
+								matriceA[i] = new Array();
+								matriceB[i] = new Array();
+								for (var j = 0; j < colA; ++j){
+									matriceA[i][j] = $("#"+i+"A"+j).val();
+									matriceB[i][j] = $('#'+i+"B"+j).val();
+								}
+							}
+							$('#resultSomme').load('produit.php', {
+								MatA: matriceA,
+								MatB: matriceB
+							});
+						}
+					});
+				});
+
+			});
+		}
+}
+
+function error_operand(str)
+{
+	var form = "#form" + str;
+
+	if (str == 'produit')
+	{
+		
+		produit(str);
+	}
+	if (str == 'somme')
+	{
+		if (($('#ligneA').val() != $('#ligneB').val()) || ($('#colA').val() != $('#colB').val())){
+			$(':text').val('');
+			$(form).empty();
+			alert('Somme A + B non calculable. Les matrices A et B doivent être de même taille');
+		}
+		else{
+			$(function(){
+				var ligneA = $('#ligneA').val();
+				var colA = $('#colA').val();
+				var ligneB = $('#ligneB').val();
+				var colB = $('#colB').val();
+				$(form).load('formAddition.php', {
+					LigneA: ligneA, 
+					ColA: colA, 
+					LigneB: ligneB, 
+					ColB: colB	
+				}, function() {
+					$("#envoimatrice").click(function() {
+						var bool = true;
+						if (bool == true){
+							$('#'+form+' :text').each(function () {
+								if ($(this).val() == false){
+									alert('Tous les champs doivent être renseignés');
+									$("#formAddition :text").val('');
+									bool = false;
+									return bool;
+								}
+							});
+						}
+						if (bool == true){
+							$(':text').each(function() {
+								var nb = $(this).val();
+								if (is_int(nb) == false){
+									alert('Les champs doivent être des nombres entiers');
+									$('#'+form+' :text').val('');
 									bool = false;
 									return bool;
 								}
