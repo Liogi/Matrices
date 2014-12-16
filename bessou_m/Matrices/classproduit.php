@@ -33,6 +33,5 @@ class Produit extends Matrice{
 			echo "</tr>";
 		}
 		echo "</table>";
-		echo "</br>";
 	}
 }
