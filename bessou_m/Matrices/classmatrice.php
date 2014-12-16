@@ -23,10 +23,6 @@ abstract class Matrice{
 		return $col;
 	}
 
-	function getElemA($i, $j){
-		return $this->matriceA[$i][$j];
-	}
-
 	function afficheMatriceA(){
 		echo "<table id='matriceA'>";
 		foreach ($this->matriceA as $ligne) {

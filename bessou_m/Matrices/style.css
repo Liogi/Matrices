@@ -7,7 +7,7 @@
 #alignBcol{
 	margin-left: 1px;
 }
-#formulaireMatriceA, #formulaireMatriceB{
+#formulaireMatriceA, #formulaireMatriceB, #resultSomme{
 	display: inline-block;
 }
 #formulaireMatriceB{

@@ -10,7 +10,7 @@ echo "<h3 class='titreh3'>MatriceA</h3>";
 for ($i = 0; $i < $ligneA; ++$i){
 	echo "<tr>";
 	for ($j = 0; $j < $colA; ++$j){
-		$id = "A$i,$j";
+		$id = "$i"."A"."$j";
 		echo "<td><input id='$id' type='text' size='3' /></td>";
 	}
 	echo "</tr>";
@@ -22,10 +22,11 @@ echo "<h3 class='titreh3'>MatriceB</h3>";
 for ($i = 0; $i < $ligneB; ++$i){
 	echo "<tr>";
 	for ($j = 0; $j < $colB; ++$j){
-		$id = "B$i,$j";
+		$id = "$i"."B"."$j";
 		echo "<td><input id='$id' type='text' size='3' /></td>";
 	}
 	echo "</tr>";
 }
 echo "</table></div>";
+echo "<div id=resultSomme></div></br>";
 echo "<button type='button' id='envoimatrice'><label for='envoimatrice'>envoi</label></button></br>";

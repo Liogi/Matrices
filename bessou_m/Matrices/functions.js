@@ -66,9 +66,46 @@ function error_operand(str)
 					ColB: colB	
 				}, function() {
 					$("#envoimatrice").click(function() {
-						$('#formAddition :text').each(function() {
-							alert($(this).val());
-						});
+						var bool = true;
+						if (bool == true){
+							$('#formAddition :text').each(function () {
+								if ($(this).val() == false){
+									alert('Tous les champs doivent être renseignés');
+									$("#formAddition :text").val('');
+									bool = false;
+									return bool;
+								}
+							});
+						}
+						if (bool == true){
+							$(':text').each(function() {
+								var nb = $(this).val();
+								if (is_int(nb) == false){
+									alert('Les champs doivent être des nombres entiers');
+									$('#formAddition :text').val('');
+									bool = false;
+									return bool;
+								}
+							});
+						}
+						if (bool == true){
+							var matriceA = new Array();
+							var matriceB = new Array();
+							var i = 0;
+							var j = 0;
+							for (var i = 0; i < ligneA; ++i){
+								matriceA[i] = new Array();
+								matriceB[i] = new Array();
+								for (var j = 0; j < colA; ++j){
+									matriceA[i][j] = $("#"+i+"A"+j).val();
+									matriceB[i][j] = $('#'+i+"B"+j).val();
+								}
+							}
+							$('#resultSomme').load('somme.php', {
+								MatA: matriceA,
+								MatB: matriceB
+							});
+						}
 					});
 				});
 
