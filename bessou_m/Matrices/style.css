@@ -12,7 +12,15 @@
 }
 #formulaireMatriceB{
 	margin-left: 30px;
+	margin-right: 30px;
 }
 .titreh3{
 	text-align: center;
+}
+.caseSomme{
+	border: 1px solid;
+	width: 50px;
+}
+.textform{
+	border: none;
 }

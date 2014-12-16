@@ -11,7 +11,7 @@ for ($i = 0; $i < $ligneA; ++$i){
 	echo "<tr>";
 	for ($j = 0; $j < $colA; ++$j){
 		$id = "$i"."A"."$j";
-		echo "<td><input id='$id' type='text' size='3' /></td>";
+		echo "<td class='caseSomme'><input class='textform' id='$id' type='text' size='3' /></td>";
 	}
 	echo "</tr>";
 }
@@ -23,7 +23,7 @@ for ($i = 0; $i < $ligneB; ++$i){
 	echo "<tr>";
 	for ($j = 0; $j < $colB; ++$j){
 		$id = "$i"."B"."$j";
-		echo "<td><input id='$id' type='text' size='3' /></td>";
+		echo "<td class='caseSomme'><input class='textform' id='$id' type='text' size='3' /></td>";
 	}
 	echo "</tr>";
 }

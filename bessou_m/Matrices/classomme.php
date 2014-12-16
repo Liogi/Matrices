@@ -20,7 +20,7 @@ class Somme extends Matrice{
 		foreach ($this->matriceSomme as $ligne) {
 			echo "<tr>";
 			foreach ($ligne as $key => $value) {
-				echo "<td>{$value}</td>";
+				echo "<td class='caseSomme'>{$value}</td>";
 			}
 			echo "</tr>";
 		}
