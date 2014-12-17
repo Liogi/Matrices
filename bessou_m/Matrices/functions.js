@@ -48,7 +48,63 @@ function error_performed(str)
 		}
 	});
 }
-
+function trace(str)
+{
+	if (($('#colA').val() != $('#ligneA').val())) {
+		$(':text').val('');
+		$('#form').empty();
+		alert('La tarce de cette matrice n\'est pas calculable. Le nombre de colonnes doit être égal au nombre de lignes.');
+	}
+	else{
+		$(function(){
+			var ligneA = $('#ligneA').val();
+			var colA = $('#colA').val();
+			$("#form").load('formTrace.php', {
+				LigneA: ligneA, 
+				ColA: colA, 	
+			}, function() {
+				$("#envoimatrice").click(function() {
+					var bool = true;
+					if (bool == true){
+						$('#form :text').each(function () {
+							if ($(this).val() == false){
+								alert('Tous les champs doivent être renseignés');
+								$("#formTrace :text").val('');
+								bool = false;
+								return bool;
+							}
+						});
+					}
+					if (bool == true){
+						$(':text').each(function() {
+							var nb = $(this).val();
+							if (is_int(nb) == false){
+								alert('Les champs doivent être des nombres entiers');
+								$('#form :text').val('');
+								bool = false;
+								return bool;
+							}
+						});
+					}
+					if (bool == true){
+						var matriceA = new Array();
+						var i = 0;
+						var j = 0;
+						for (var i = 0; i < ligneA; ++i){
+							matriceA[i] = new Array();
+							for (var j = 0; j < colA; ++j){
+								matriceA[i][j] = $("#"+i+"A"+j).val();
+							}
+						}
+						$('#resultSomme').load('trace.php', {
+							MatA: matriceA,
+						});
+					}
+				});
+			});
+		});
+	}
+}
 function produit(str)
 {
 	if (($('#colA').val() != $('#ligneB').val())) {
@@ -124,6 +180,10 @@ function error_operand(str)
 	if (str == 'produit')
 	{	
 		produit(str);
+	}
+	if (str == 'trace')
+	{	
+		trace(str);
 	}
 	if (str == 'somme')
 	{
