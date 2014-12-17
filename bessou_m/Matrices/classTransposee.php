@@ -9,12 +9,12 @@ class Transposee extends Matrice{
 		for ($i = 0; $i < count($this->matriceA[0]); ++$i)
 		{
 			for ($j = 0; $j < count($this->matriceA); ++$j){
-				$this->matrceTransposee[$i][$j] = $this->matriceA[$j][$i];
+				$this->matriceTransposee[$i][$j] = $this->matriceA[$j][$i];
 			}
 		}
 	}
 
-function afficheSomme(){
+function afficheTransposee(){
 		echo "<table class='matriceresult'>";
 		echo "<h3 class='titreh3'>MatriceTransposee</h3>";
 		foreach ($this->matriceTransposee as $ligne) {

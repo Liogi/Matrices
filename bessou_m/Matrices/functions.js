@@ -53,7 +53,7 @@ function transposee(str)
 	$(function(){
 		var ligneA = $('#ligneA').val();
 		var colA = $('#colA').val();
-		$("#form").load('formTrace.php', {
+		$("#form").load('formTransposee.php', {
 			LigneA: ligneA, 
 			ColA: colA, 	
 		}, function() {
@@ -63,7 +63,7 @@ function transposee(str)
 					$('#form :text').each(function () {
 						if ($(this).val() == false){
 							alert('Tous les champs doivent être renseignés');
-							$("#formTrace :text").val('');
+							$("#formTransposee :text").val('');
 							bool = false;
 							return bool;
 						}
@@ -238,7 +238,6 @@ function error_operand(str)
 	}
 	if (str == 'transposee')
 	{	
-		alert("tamaman");
 		transposee(str);
 	}
 	if (str == 'somme')

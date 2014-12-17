@@ -14,7 +14,7 @@ for ($i = 0; $i < $ligneA; ++$i){
 	echo "</tr>";
 }
 echo "</table>";
-echo "<div id=resultSomme></div>";
-echo "</div></br>";
+echo "</div>";
+echo "<div id=resultSomme></div></br>";
 
 echo "<button type='button' id='envoimatrice'><label for='envoimatrice'>envoi</label></button></br>";
