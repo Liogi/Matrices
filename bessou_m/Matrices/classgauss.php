@@ -112,6 +112,28 @@ class Gauss extends Matrice{
 	}
 
 	function operation(){
+		if (count($this->matriceA) == 2)
+		{	
+			if (!($this->matriceA2[1][0] == 0 && $this->matriceA2[1][1] == 0))
+			{
+				$x2 = ($this->matriceY2[1][0]) / ($this->matriceA2[1][1]);
+				$x1 = (($this->matriceY2[0][0]) - (($this->matriceA2[0][1])*$x2)) / (($this->matriceA2[0][0]));	
+				echo "<br/>";
+				echo "L'ensemble des solutions est: {(".$x1.",".$x2.")}";
+			}
+			else
+				echo "<br/> Pas de solutions.";
+		}
+		if (count($this->matriceA) == 3)
+		{
+			if (($this->matriceA3[2][0] == 0 && $this->matriceA3[2][1] == 0))
+			{
+				$x3 = ($this->matriceY3[2][0]) / ($this->matriceA3[2][2]);		
+				$x2 = (($this->matriceY3[1][0]) - (($this->matriceA3[1][2])*$x3)) / (($this->matriceA3[1][1]));
+				$x1 = 
+			}
+		}
+
 	}
 
 	function getMatriceG1(){

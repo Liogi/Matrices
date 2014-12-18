@@ -48,4 +48,5 @@ if (isset($matriceA) && isset($matriceY)){
 		$gauss->afficheMatrice($gauss->getMatriceY3(), "Y3");
 		$gauss->afficheMatrice($gauss->getMatriceY4(), "Y4");	
 	}
+	$gauss->operation();
 }
