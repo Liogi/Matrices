@@ -30,6 +30,21 @@ class Gauss extends Matrice{
 			}
 		}
 	}
+	function verif_colA(){
+		for ($i = 0; $i < count($this->matriceA); ++$i){
+			$tmp = 0;
+			for ($j = $i; $j < count($this->matriceA[0]); ++$j){
+				$tmp += $this->matriceA[$j][$i];
+			}
+			if ($tmp == 0)
+			{
+				echo "<br/>";
+				echo "Division par 0 impossible, pas de solutions pour ce système. <br/>";
+				return false;
+			}
+		}
+		return true;
+	}
 
 	function verif_a11(){
 		if ($this->matriceA[0][0] == 0){
@@ -114,26 +129,70 @@ class Gauss extends Matrice{
 	function operation(){
 		if (count($this->matriceA) == 2)
 		{	
-			if (!($this->matriceA2[1][0] == 0 && $this->matriceA2[1][1] == 0))
+			if ($this->matriceA2[1][0] == 0)
 			{
 				$x2 = ($this->matriceY2[1][0]) / ($this->matriceA2[1][1]);
-				$x1 = (($this->matriceY2[0][0]) - (($this->matriceA2[0][1])*$x2)) / (($this->matriceA2[0][0]));	
+				$x1 = (($this->matriceY2[0][0]) - (($this->matriceA2[0][1]) * $x2)) / (($this->matriceA2[0][0]));	
 				echo "<br/>";
 				echo "L'ensemble des solutions est: {(".$x1.",".$x2.")}";
 			}
 			else
+			{
 				echo "<br/> Pas de solutions.";
+				return 0;
+			}
 		}
-		if (count($this->matriceA) == 3)
+		else if (count($this->matriceA) == 3)
 		{
 			if (($this->matriceA3[2][0] == 0 && $this->matriceA3[2][1] == 0))
 			{
-				$x3 = ($this->matriceY3[2][0]) / ($this->matriceA3[2][2]);		
-				$x2 = (($this->matriceY3[1][0]) - (($this->matriceA3[1][2])*$x3)) / (($this->matriceA3[1][1]));
-				$x1 = 
+				$x3 = ($this->matriceY3[2][0]) / ($this->matriceA3[2][2]);
+				if ($this->matriceA3[1][0] == 0)
+				{
+					$x2 = (($this->matriceY3[1][0] - ($this->matriceA3[1][2] * $x3)) / $this->matriceA3[1][1]);
+				}
+				else
+				{
+					echo "<br/> Pas de solutions.";
+					return 0;
+				}
+				$x1 = (($this->matriceY3[0][0] - ($this->matriceA3[0][2] * $x3) - ($this->matriceA3[0][1] * $x2)) / $this->matriceA3[0][0]);
+				echo "<br/>";
+				echo "L'ensemble des solutions est: {(".$x1.",".$x2.",".$x3.")}";
 			}
 		}
-
+		else if (count($this->matriceA) == 4)
+		{
+			if (($this->matriceA4[3][0] == 0 && $this->matriceA4[3][1] == 0) && $this->matriceA4[3][2] == 0)
+			{
+				$x4 = ($this->matriceY4[3][0]) / ($this->matriceA4[3][3]);
+				if ($this->matriceA4[2][0] == 0 && $this->matriceA4[2][1] == 0)
+				{
+					$x3 = (($this->matriceY4[2][0] - ($this->matriceA4[2][3] * $x4)) / $this->matriceA4[2][2]);
+				}
+				else
+				{
+					return 0;
+				}
+				if ($this->matriceA4[1][0] == 0)
+				{
+					$x2 = (($this->matriceY4[1][0] - ($this->matriceA4[1][3] * $x4) - ($this->matriceA4[1][2] * $x3)) / $this->matriceA4[1][1]);
+				}
+				else
+				{
+					echo "<br/> Pas de solutions.";
+					return 0;
+				}
+				$x1 = (($this->matriceY4[0][0] - ($this->matriceA4[0][3] * $x4) - ($this->matriceA4[0][2] * $x3) - ($this->matriceA4[0][1] * $x2)) / $this->matriceA4[0][0]);
+				echo "<br/>";
+				echo "L'ensemble des solutions est: {(".$x4.",".$x3.",".$x2.",".$x1.")}";
+			}
+		}
+		else
+		{
+			echo "<br/> Pas de solutions.";
+			return 0;
+		}
 	}
 
 	function getMatriceG1(){
