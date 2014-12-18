@@ -26,4 +26,8 @@ class Somme extends Matrice{
 		}
 		echo "</table>";
 	}
+
+	function getMatriceSomme(){
+		return $this->matriceSomme;
+	}
 }

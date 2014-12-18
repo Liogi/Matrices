@@ -20,7 +20,7 @@ function error_performed(str)
 		var bool = true;
 		if (bool == true){
 			$(':text').each(function () {
-				if ($(this).val() == false){
+				if ($(this).val() === false){
 					alert('Tous les champs doivent être renseignés');
 					$(':text').val('');
 					$(form).empty();
@@ -61,7 +61,7 @@ function transposee(str)
 				var bool = true;
 				if (bool == true){
 					$('#form :text').each(function () {
-						if ($(this).val() == false){
+						if ($(this).val() === false){
 							alert('Tous les champs doivent être renseignés');
 							$("#formTransposee :text").val('');
 							bool = false;
@@ -72,7 +72,7 @@ function transposee(str)
 				if (bool == true){
 					$(':text').each(function() {
 						var nb = $(this).val();
-						if (is_int(nb) == false){
+						if (is_numeric(nb) == false){
 							alert('Les champs doivent être des nombres entiers');
 							$('#form :text').val('');
 							bool = false;
@@ -110,7 +110,7 @@ function trace(str)
 				var bool = true;
 				if (bool == true){
 					$('#form :text').each(function () {
-						if ($(this).val() == false){
+						if ($(this).val() === false){
 							alert('Tous les champs doivent être renseignés');
 							$("#formTrace :text").val('');
 							bool = false;
@@ -121,7 +121,7 @@ function trace(str)
 				if (bool == true){
 					$(':text').each(function() {
 						var nb = $(this).val();
-						if (is_int(nb) == false){
+						if (is_numeric(nb) == false){
 							alert('Les champs doivent être des nombres entiers');
 							$('#form :text').val('');
 							bool = false;
@@ -170,7 +170,7 @@ function produit(str)
 					var bool = true;
 					if (bool == true){
 						$('#form :text').each(function () {
-							if ($(this).val() == false){
+							if ($(this).val() === false){
 								alert('Tous les champs doivent être renseignés');
 								$("#formAddition :text").val('');
 								bool = false;
@@ -181,7 +181,7 @@ function produit(str)
 					if (bool == true){
 						$(':text').each(function() {
 							var nb = $(this).val();
-							if (is_int(nb) == false){
+							if (is_numeric(nb) == false){
 								alert('Les champs doivent être des nombres entiers');
 								$('#form :text').val('');
 								bool = false;
@@ -216,7 +216,67 @@ function produit(str)
 		});
 	}
 }
-
+function gauss(str)
+{
+	if (parseInt($('#colA').val()) < 2 ||  parseInt($('#colA').val()) > 4){
+		$(':text').val('');
+		$('#form').empty();
+		alert('Le nombre de systèmes à résoudre doit être compris entre 2 et 4');
+	}
+	else{
+		$(function(){
+			var ordreA = $('#ligneA').val();
+			$("#form").load('formGauss.php', {
+				OrdreA: ordreA 
+			}, function() {
+				$("#envoimatrice").click(function() {
+					var bool = true;
+					if (bool == true){
+						$('#form :text').each(function () {
+							if ($(this).val() === false){
+								alert('Tous les champs doivent être renseignés');
+								$("#formGauss :text").val('');
+								bool = false;
+								return bool;
+							}
+						});
+					}
+					if (bool == true){
+						$(':text').each(function() {
+							var nb = $(this).val();
+							if (is_numeric(nb) == false){
+								alert('Les champs doivent être des nombres entiers');
+								$('#form :text').val('');
+								bool = false;
+								return bool;
+							}
+						});
+					}
+					if (bool == true){
+						var matriceA = new Array();
+						var matriceB = new Array();
+						var i = 0;
+						var j = 0;
+						for (var i = 0; i < ordreA; ++i){
+							matriceA[i] = new Array();
+							for (var j = 0; j < ordreA; ++j){
+								matriceA[i][j] = $("#"+i+"A"+j).val();
+							}
+						}
+						for (var i = 0; i < ordreA; ++i){
+							matriceB[i] = new Array();
+							matriceB[i][0] = $('#'+i+"B"+0).val();
+						}
+						$('#resultgauss').load('gauss.php', {
+							MatA: matriceA,
+							MatB: matriceB
+						});
+					}
+				});
+			});
+		});
+	}
+}
 function error_operand(str)
 {
 	if (str == 'produit')
@@ -230,6 +290,10 @@ function error_operand(str)
 	if (str == 'transposee')
 	{	
 		transposee(str);
+	}
+	if (str == 'gauss')
+	{
+		gauss(str);
 	}
 	if (str == 'somme')
 	{
@@ -254,7 +318,7 @@ function error_operand(str)
 						var bool = true;
 						if (bool == true){
 							$('#form :text').each(function () {
-								if ($(this).val() == false){
+								if ($(this).val() === false){
 									alert('Tous les champs doivent être renseignés');
 									$("#formAddition :text").val('');
 									bool = false;
@@ -265,7 +329,7 @@ function error_operand(str)
 						if (bool == true){
 							$(':text').each(function() {
 								var nb = $(this).val();
-								if (is_int(nb) == false){
+								if (is_numeric(nb) == false){
 									alert('Les champs doivent être des nombres entiers');
 									$('#form :text').val('');
 									bool = false;
@@ -305,4 +369,8 @@ function is_int(val)
 		return true;
 	else
 		return false;
+}
+
+function is_numeric(nb){
+	return !isNaN(parseFloat(nb)) && isFinite(nb);
 }

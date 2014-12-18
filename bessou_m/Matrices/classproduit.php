@@ -16,8 +16,10 @@ class Produit extends Matrice{
 			$ligne = $this->getLigneA($i);
 			for ($j = 0; $j < count($this->matriceB[0]); ++$j){
 				$col = $this->getColB($j);
+				//echo "CASE{$i}-{$j}</br>";
 				for ($k = 0; $k < count($this->getLigneA(0)); ++$k){
-					$this->matriceProduit[$i][$j] += $ligne[$k] * $col[$k];
+					$this->matriceProduit[$i][$j] += ($ligne[$k] * $col[$k]);
+				//	echo $this->matriceProduit[$i][$j]."</br>";
 				}
 			}
 		}
@@ -34,5 +36,9 @@ class Produit extends Matrice{
 			echo "</tr>";
 		}
 		echo "</table>";
+	}
+
+	function getMatriceProduit(){
+		return $this->matriceProduit;
 	}
 }

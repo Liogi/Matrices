@@ -23,18 +23,6 @@ abstract class Matrice{
 		return $col;
 	}
 
-	function afficheMatriceA(){
-		echo "<table id='matriceA'>";
-		foreach ($this->matriceA as $ligne) {
-			echo "<tr>";
-			foreach ($ligne as $key => $value) {
-				echo "<td>{$value}</td>";
-			}
-			echo "</tr>";
-		}
-		echo "</table>";
-		echo "</br>";
-	}
 
 	function getLigneB($nb){
 		$ligne = array();
@@ -55,18 +43,26 @@ abstract class Matrice{
 		return $col;
 	}
 
-	function afficheMatriceB(){
-		echo "<table id='matriceB'>";
-		foreach ($this->matriceB as $ligne) {
+	function afficheMatrice($matrice, $name){
+		echo "<div id={$name}>";
+		echo "<table class='matriceresult'>";
+		echo "<h3 class='titreh3'>Matrice{$name}</h3>";
+		foreach ($matrice as $ligne) {
 			echo "<tr>";
 			foreach ($ligne as $key => $value) {
-				echo "<td>{$value}</td>";
+				echo "<td class='caseresult'>".round($value, 2)."</td>";
 			}
 			echo "</tr>";
 		}
 		echo "</table>";
-		echo "</br>";
+		echo "</div>";
 	}
 	
+	function getMatriceA(){
+		return $this->matriceA;
+	}
+	function getMatriceB(){
+		return $this->matriceB;
+	}
 	abstract protected function operation();
 }

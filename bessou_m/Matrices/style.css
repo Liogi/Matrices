@@ -7,7 +7,7 @@
 #alignBcol{
 	margin-left: 1px;
 }
-#formulaireMatriceA, #formulaireMatriceB, #resultSomme{
+#formulaireMatriceA, #formulaireMatriceB, #resultSomme, #resultgauss, #G1, #A2, #Y2, #Y, #A, #G2, #A3, #Y3, #G3, #A4, #Y4{
 	margin-right: 30px;
 	display: inline-block;
 }
