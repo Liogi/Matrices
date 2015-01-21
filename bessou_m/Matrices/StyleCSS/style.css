@@ -1,0 +1,23 @@
+#alignA{
+	margin-left: 19px;
+}
+#alignB{
+	margin-left: 20px;
+}
+#alignBcol{
+	margin-left: 1px;
+}
+#formulaireMatriceA, #formulaireMatriceB, #resultSomme, #resultgauss, #G1, #A2, #Y2, #Y, #A, #G2, #A3, #Y3, #G3, #A4, #Y4{
+	margin-right: 30px;
+	display: inline-block;
+}
+.titreh3{
+	text-align: center;
+}
+.caseresult{
+	border: 1px solid;
+	width: 50px;
+}
+.textform{
+	border: none;
+}
